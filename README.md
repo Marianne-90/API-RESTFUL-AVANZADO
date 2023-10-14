@@ -12,4 +12,5 @@
 ## controladores
 - Los controladores de tipo recurso son para añadir controlar los modelos o sea que puedan hacer CRUD
 
-### 3) se ponen atributos en los modelos 
+
+## **IMPORTANTE** estoy poniendo aquí lo que a mi parecer necesitaré recordar a la mano en un futuro para ver el desarrollo de la app se pueden revizar los commits 
