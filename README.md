@@ -11,3 +11,5 @@
 ### 2) Se hacen los controladores `php artisan make:controller $carpteta/$nompre . controller -r`
 ## controladores
 - Los controladores de tipo recurso son para añadir controlar los modelos o sea que puedan hacer CRUD
+
+### 3) se ponen atributos en los modelos 
