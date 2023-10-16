@@ -22,8 +22,8 @@ class TransactionFactory extends Factory
 
     public function definition(): array
     {
-        $vendedor = Seller::has('products')->get()->random()->id;
-        $comprador = User::all()->except($vendedor)->random();
+        $vendedor = Seller::has('products')->get()->random();
+        $comprador = User::all()->except($vendedor->id)->random();
 
         return [
             'quantity' => $this->faker->numberBetween(1, 3),

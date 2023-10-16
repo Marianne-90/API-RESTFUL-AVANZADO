@@ -19,13 +19,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {   
-        DB::statement('SET FOREING_KEY_CHEKS = 0');
+        // DB::statement('SET FOREING_KEY_CHEKS = 0');
 
-        User::truncate();
-        Category::truncate();
-        Product::truncate();
-        Transaction::truncate();
-        DB::table('category_product')->truncate();
+        // User::truncate();
+        // Category::truncate();
+        // Product::truncate();
+        // Transaction::truncate();
+        // DB::table('category_product')->truncate();
+
+        //*? lo eliminé porque voy a usar php artisan migrate:fresh --seed
 
         User::factory(200)->create();
         Category::factory(30)->create();
