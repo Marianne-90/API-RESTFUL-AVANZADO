@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantity')->unsigned;
             $table->string('status')->default(Product::PRODUCTO_NO_DISPONIBLE);
             $table->string('image');
-            $table->integer('seller_id')->unsigned;
+            $table->unsignedBigInteger('seller_id');
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('users');
