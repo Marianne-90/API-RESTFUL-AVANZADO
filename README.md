@@ -17,3 +17,5 @@
 
 ## crear tabla pibote 
 - Para la tabla pibote se deberá poner `php artisan make:migration category_product_table --create=category_product` notar que las dos tablas implicadas van en nombre alfabético 
+
+## Recordatorio cambiar APP_DEBUG cuando se mande a producción 

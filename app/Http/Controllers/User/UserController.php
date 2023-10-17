@@ -104,17 +104,20 @@ class UserController extends ApiController
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
-        $producto = Product::where('seller_id', $id)->get();
 
-        foreach ($producto as $key => $value) {
-            $productId = $value->id;
+        //*? Esto es para eliminar el usuario pero pusimos un controlador de excepciones y te aparece que no se puede eliminar porque está ligado a llaves foraneas, si quieres eliminarlo solo descomenta lo de abajo
 
-            Transaction::where('product_id', $productId)->orWhere('buyer_id', $id)->delete();
+        // $producto = Product::where('seller_id', $id)->get();
 
-            DB::table('category_product')->where('product_id', $productId)->delete();
+        // foreach ($producto as $key => $value) {
+        //     $productId = $value->id;
 
-            $value->delete();
-        }
+        //     Transaction::where('product_id', $productId)->orWhere('buyer_id', $id)->delete();
+
+        //     DB::table('category_product')->where('product_id', $productId)->delete();
+
+        //     $value->delete();
+        // }
 
         $user->delete();
         return $this->showOne($user, 200);
