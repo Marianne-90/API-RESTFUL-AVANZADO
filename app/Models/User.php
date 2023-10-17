@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -66,5 +67,21 @@ class User extends Authenticatable
 
     public static function generarVerificationToken(){
         return Str::random(40);
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucwords($value),
+            set: fn (string $value) => strtolower($value),
+        );
+    }
+
+    protected function email(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => $value,
+            set: fn (string $value) => strtolower($value),
+        );
     }
 }
