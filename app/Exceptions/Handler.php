@@ -38,15 +38,25 @@ class Handler extends ExceptionHandler
         });
     }
 
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $this->errorResponse('No autenticado', 401);
+    }
+
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
         if ($exception instanceof ModelNotFoundException) {
-            $modelo = class_basename($exception->getModel());
+            $modelo = strtolower(class_basename($exception->getModel()));
             return $this->errorResponse("No existe Ninguna Instancia de {$modelo} con el id específico", 404);
         }
+
+        if ($exception instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $exception);
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -62,7 +72,6 @@ class Handler extends ExceptionHandler
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->getMessages();
-
         return $this->errorResponse($errors, 422);
     }
 }
