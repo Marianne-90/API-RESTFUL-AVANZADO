@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         //*? lo eliminé porque voy a usar php artisan migrate:fresh --seed
 
-        User::factory(200)->create();
+        User::factory(1000)->create();
         Category::factory(30)->create();
         Product::factory(1000)->create()->each(
             function($producto){
