@@ -10,6 +10,7 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
     protected $dates = ['deleted_at'];
+    protected $hidden = ['pivot'];
     const PRODUCTO_DISPONIBLE = 'disponible';
     const PRODUCTO_NO_DISPONIBLE = 'no disponible';
 
