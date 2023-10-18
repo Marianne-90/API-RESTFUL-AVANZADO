@@ -15,7 +15,6 @@ class BuyerController extends ApiController
     public function index()
     {
         $compradores = Buyer::has('transactions')->get();
-
         return $this->showAll($compradores);
     }
 
@@ -23,9 +22,11 @@ class BuyerController extends ApiController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $comprador = Buyer::has('transactions')->findOrFail($id);
-        return $this->showOne($comprador, 200);
+    public function show(Buyer $buyer)
+    {   //*! debemos hacer una inyección implícita para que esto tenga el mismo resultado que 
+        //*! si aplicáramos el código comentado, revizar carpeta scopes
+
+        // $comprador = Buyer::has('transactions')->findOrFail($id);
+        return $this->showOne($buyer, 200);
     }
 }

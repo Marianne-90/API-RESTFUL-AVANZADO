@@ -49,19 +49,17 @@ class UserController extends ApiController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        $usuario = User::findOrFail($id);
-        return $this->showOne($usuario, 200);
+        return $this->showOne($user, 200);
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id,)
+    public function update(Request $request, User $user,)
     {
-        $user = User::findOrFail($id);
         $rules = [
             'email' => 'email|unique:users,email,' . $user->id,
             'password' => 'min:6|confirmed',
@@ -101,9 +99,9 @@ class UserController extends ApiController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+   
 
         //*? Esto es para eliminar el usuario pero pusimos un controlador de excepciones y te aparece que no se puede eliminar porque está ligado a llaves foraneas, si quieres eliminarlo solo descomenta lo de abajo
 
