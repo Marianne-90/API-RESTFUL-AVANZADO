@@ -72,3 +72,4 @@ Route::resource('sellers.products', SellerProductController::class)->except(['cr
 
 /** USERS */
 Route::resource('users', UserController::class)->except(['create', 'edit']);
+Route::name('verify')->get('users/verify/{token}', [UserController::class, 'verify']);
