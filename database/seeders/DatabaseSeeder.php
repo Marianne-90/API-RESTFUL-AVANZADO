@@ -19,6 +19,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {   
+
+
+        User::flushEventListeners(); //* para que no se manden mil correos electrónicos uno por cada usuario
+        Category::flushEventListeners();
+        Product::flushEventListeners();
+        Transaction::flushEventListeners();
+
         // DB::statement('SET FOREING_KEY_CHEKS = 0');
 
         // User::truncate();
