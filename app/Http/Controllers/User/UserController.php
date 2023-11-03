@@ -103,7 +103,7 @@ class UserController extends ApiController
      */
     public function destroy(User $user)
     {
-   
+
 
         //*? Esto es para eliminar el usuario pero pusimos un controlador de excepciones y te aparece que no se puede eliminar porque está ligado a llaves foraneas, si quieres eliminarlo solo descomenta lo de abajo
 
@@ -123,7 +123,8 @@ class UserController extends ApiController
         return $this->showOne($user, 200);
     }
 
-    public function verify($token){
+    public function verify($token)
+    {
         $user = User::where('verification_token', $token)->firstOrFail();
 
         $user->verified = User::USUARIO_VERIFICADO;
@@ -134,12 +135,16 @@ class UserController extends ApiController
         return $this->showMessage("La cuenta ha sido verificada");
     }
 
-    public function resend(User $user){
-        if($user->esVerificado()){
+    public function resend(User $user)
+    {
+        if ($user->esVerificado()) {
             return $this->errorResponse('Este usuario ya se he verificado', 409);
         }
 
-        Mail::to($user)->send(new UserCreated($user));
+        retry(5, function () use ($user) {
+            Mail::to($user)->send(new UserCreated($user));
+        }, 100);
+
 
         return $this->showMessage("El correo de verificación se ha reenviado");
     }
