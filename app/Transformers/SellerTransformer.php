@@ -34,7 +34,7 @@ class SellerTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$seller->id,
-            'nombre' => (string)$seller->nombre,
+            'nombre' => (string)$seller->name,
             'correo' => (string)$seller->email,
             'esVerificado' => (string)$seller->verified,
             'fechaDeCreacion' => (string)$seller->created_at,
