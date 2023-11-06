@@ -26,3 +26,6 @@
 
 ## crear middleware
 - `php artisan make:middleware SignatureMiddleware`
+
+## Crear Fractal
+- `php artisan make:transformer UserTransformer`
