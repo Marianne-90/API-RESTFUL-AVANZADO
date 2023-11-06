@@ -23,3 +23,6 @@
 ## crear un correo 
 - `php artisan make:mail UserCreated`
 - para crear el mail con plantilla es `php artisan make:mail Prueba -m emails.prueba`
+
+## crear middleware
+- `php artisan make:middleware SignatureMiddleware`
